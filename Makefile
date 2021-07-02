@@ -27,10 +27,8 @@ BITSHUFFLE_UNPACKED:=$(TARGET)/bitshuffle-extracted.log
 
 $(BITSHUFFLE_ARCHIVE):
 	@mkdir -p $(@D)
-	curl -L -o$@ https://github.com/kiyo-masui/bitshuffle/archive/$(BITSHUFFLE_VERSION).tar.gz
 
 $(BITSHUFFLE_UNPACKED): $(BITSHUFFLE_ARCHIVE)
-	$(TAR) xvfz $< -C $(TARGET)
 	touch $@
 
 $(BITSHUFFLE_SRC): $(BITSHUFFLE_UNPACKED)
@@ -67,18 +65,13 @@ endif
 
 $(SNAPPY_ARCHIVE):
 	@mkdir -p $(@D)
-	curl -L -o$@ https://github.com/google/snappy/releases/download/$(SNAPPY_VERSION)/snappy-$(SNAPPY_VERSION).tar.gz
 
 $(SNAPPY_UNPACKED): $(SNAPPY_ARCHIVE)
-	$(TAR) xvfz $< -C $(TARGET)
 	touch $@
 
 $(SNAPPY_GIT_UNPACKED):
 	@mkdir -p $(SNAPPY_OUT)
-	rm -rf $(SNAPPY_SRC_DIR)
 	@mkdir -p $(SNAPPY_SRC_DIR)
-	git clone $(SNAPPY_GIT_REPO_URL) $(SNAPPY_SRC_DIR)
-	git --git-dir=$(SNAPPY_SRC_DIR)/.git --work-tree=$(SNAPPY_SRC_DIR) checkout -b local/snappy-$(SNAPPY_VERSION) $(SNAPPY_GIT_REV)
 	touch $@
 
 $(SNAPPY_CMAKE_CACHE): $(SNAPPY_GIT_UNPACKED)

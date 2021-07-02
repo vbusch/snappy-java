@@ -99,7 +99,7 @@ ifeq ($(IBM_JDK_7),)
 else
   Linux-x86_64_CXXFLAGS  := -include $(IBM_JDK_LIB)/jni_md.h -include $(IBM_JDK_LIB)/jniport.h -I$(JAVA_HOME)/include -O2 -fPIC -fvisibility=hidden -m64 -std=c++11
 endif
-Linux-x86_64_LINKFLAGS := -shared -static-libgcc -static-libstdc++
+Linux-x86_64_LINKFLAGS := -shared -static-libgcc -lstdc++
 Linux-x86_64_LIBNAME   := libsnappyjava.so
 Linux-x86_64_SNAPPY_FLAGS  :=
 
